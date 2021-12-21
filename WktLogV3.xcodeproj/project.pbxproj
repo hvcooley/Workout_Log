@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		8A908F77277174F100B78E9E /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8A908F76277174F100B78E9E /* main.cpp */; };
+		8A908F83277175C900B78E9E /* Exceptions_v3.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8A908F81277175C900B78E9E /* Exceptions_v3.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -25,6 +26,15 @@
 /* Begin PBXFileReference section */
 		8A908F73277174F100B78E9E /* WktLogV3 */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = WktLogV3; sourceTree = BUILT_PRODUCTS_DIR; };
 		8A908F76277174F100B78E9E /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		8A908F7D2771753500B78E9E /* main.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = main.h; sourceTree = "<group>"; };
+		8A908F7E2771756D00B78E9E /* ExerciseTemplate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ExerciseTemplate.h; sourceTree = "<group>"; };
+		8A908F7F2771758E00B78E9E /* workoutTemplate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = workoutTemplate.h; sourceTree = "<group>"; };
+		8A908F80277175AC00B78E9E /* WorkoutPlan.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WorkoutPlan.h; sourceTree = "<group>"; };
+		8A908F81277175C900B78E9E /* Exceptions_v3.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Exceptions_v3.cpp; sourceTree = "<group>"; };
+		8A908F82277175C900B78E9E /* Exceptions_v3.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Exceptions_v3.h; sourceTree = "<group>"; };
+		8A908F842771770D00B78E9E /* RunTemplate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RunTemplate.h; sourceTree = "<group>"; };
+		8A908F852771774B00B78E9E /* MTFList.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MTFList.h; sourceTree = "<group>"; };
+		8A908F86277177C800B78E9E /* savedData.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = savedData.txt; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,7 +67,16 @@
 		8A908F75277174F100B78E9E /* WktLogV3 */ = {
 			isa = PBXGroup;
 			children = (
+				8A908F86277177C800B78E9E /* savedData.txt */,
 				8A908F76277174F100B78E9E /* main.cpp */,
+				8A908F7D2771753500B78E9E /* main.h */,
+				8A908F7E2771756D00B78E9E /* ExerciseTemplate.h */,
+				8A908F7F2771758E00B78E9E /* workoutTemplate.h */,
+				8A908F80277175AC00B78E9E /* WorkoutPlan.h */,
+				8A908F81277175C900B78E9E /* Exceptions_v3.cpp */,
+				8A908F82277175C900B78E9E /* Exceptions_v3.h */,
+				8A908F842771770D00B78E9E /* RunTemplate.h */,
+				8A908F852771774B00B78E9E /* MTFList.h */,
 			);
 			path = WktLogV3;
 			sourceTree = "<group>";
@@ -119,6 +138,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8A908F83277175C900B78E9E /* Exceptions_v3.cpp in Sources */,
 				8A908F77277174F100B78E9E /* main.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
