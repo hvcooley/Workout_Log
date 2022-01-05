@@ -21,6 +21,7 @@
 #include "workoutTemplate.h"
 #include "RunTemplate.h"
 #include "MTFList.h"
+#include "WorkoutPlan.h"
 
 
 #include <stdio.h>
