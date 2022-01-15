@@ -38,6 +38,8 @@ public:
     void setDate(int m, int d, int y);
     
     void initXciseList(int sz);
+    
+    void resetWkt();
         
     string name;
     int numXcises;
@@ -77,7 +79,7 @@ workout_template::~workout_template()
 {
     numXcises = 0;
     //need to delete the dynamically allocated memory in order to prevent memory leak
-    delete [] exerciseList;
+    //delete [] exerciseList;
 }//END destructor
 
 void workout_template::setName(string newName)
@@ -148,6 +150,13 @@ void workout_template::initXciseList(int sz)
     int size = sz;
     setXciseNumber(size);
     exerciseList = new exercise_template[size];
+}
+
+void workout_template::resetWkt()
+{
+    numXcises = 0;
+    //need to delete the dynamically allocated memory in order to prevent memory leak
+    delete [] exerciseList;
 }
 
 #endif /* workoutTemplate_h */

@@ -32,9 +32,6 @@ void loadData(string fP, vector<workout_template> &data)
     //switching the data storage to a vector passed as reference into the function
     //workout_template listOfWorkouts [50];
     
-    //this will be the workout template I repeatedly put data into then insert into the list
-    workout_template reUsableWorkout;
-    
     char garbage; //to get rid of underscores and other chars
     
     //reusable variables for the workout to populate
@@ -74,6 +71,9 @@ void loadData(string fP, vector<workout_template> &data)
     {
         goodToInsert = false;
         
+        //this will be the workout template I repeatedly put data into then insert into the list
+        workout_template reUsableWorkout;
+        
         loadData >> m;
         loadData >> ch;
         loadData >> d;
@@ -83,6 +83,8 @@ void loadData(string fP, vector<workout_template> &data)
         goodToInsert = true;
         
         loadData >> wktName;
+        
+        cout << endl << endl;
         
         cout << "The workout name is: " << wktName << endl;
         
@@ -104,7 +106,6 @@ void loadData(string fP, vector<workout_template> &data)
         
         for (int h = 0; h < numXrcises; h++)
         {
-            
             cout << "Inside for loop loading each workout" << endl;
             
             loadData >> garbage; //get rid of the *
@@ -140,6 +141,7 @@ void loadData(string fP, vector<workout_template> &data)
             
             data.push_back(reUsableWorkout);
             
+            //reUsableWorkout.resetWkt();
             //increment++;
             
         }//end if goodToInsert == true
