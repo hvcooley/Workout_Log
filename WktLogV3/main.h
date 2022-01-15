@@ -22,6 +22,7 @@
 #include "RunTemplate.h"
 #include "MTFList.h"
 #include "WorkoutPlan.h"
+#include "loadWktData.h"
 
 
 #include <stdio.h>

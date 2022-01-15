@@ -23,32 +23,54 @@ using namespace std;
 
 class workout_template
 {
-    public:
-        void setName(string newName);
-        void setXciseNumber(int num);
-    
-        void addXrcise(exercise_template addOn);
+public:
         
-        string name;
-        int numberOfExercises;
-        int xciseCount = 0;
+    workout_template();
+    ~workout_template();
     
-        int timesCompleted; //this will be incremented every time a workout is logged, will help with reading the info to and from the file for saving
+    void setName(string newName);
+    void setXciseNumber(int num);
     
-        //MTFL<exercise_template> exerciseList;
-        //can no longer use this one because the MTFL of the workouts in the program gets confused with the interal MTFL of each workout for the exercises, probably because each will have same identifiers such as header, etc.
+    void addXrcise(exercise_template addOn);
     
-        exercise_template exerciseListTwo[10]; //this stores each exercise for this specific workout
+    void getDate();
     
-    private:
+    void setDate(int m, int d, int y);
         
+    string name;
+    int numXcises;
+    int xciseCount = 0;
+    
+    int timesCompleted; //this will be incremented every time a workout is logged, will help with reading the info to and from the file for saving
+    
+    exercise_template *exerciseList ; //this stores each exercise for this specific workout
+    
+private:
+    
+    int month, day, year;
         
-    
-        
-    
-    
+
 };
 
+//Constructor
+workout_template::workout_template()
+{
+    cout << "Enter the name of this workout here: ";
+    cin >> name;
+    cout << endl;
+    cout << "Enter the number of excersises in this workout here: ";
+    cin >> numXcises;
+    
+    exerciseList = new exercise_template[numXcises];
+}//END constructor
+
+//Destructor
+workout_template::~workout_template()
+{
+    numXcises = 0;
+    //need to delete the dynamically allocated memory in order to prevent memory leak
+    delete [] exerciseList;
+}//END destructor
 
 void workout_template::setName(string newName)
 {
@@ -71,29 +93,44 @@ void workout_template::setXciseNumber(int num)
     cout << "Setting the number of exercises in this workout to ";
     cout << num << endl;
     
-    numberOfExercises = num;
+    numXcises = num;
     
     cout << "The number of exercises in this workout is ";
-    cout << numberOfExercises << endl;
+    cout << numXcises << endl;
 }
 
 
 
+//change this so the added xrcise is created in this funciton, not passed as param
 void workout_template::addXrcise(exercise_template addOn)
 {
     
-    if (xciseCount > numberOfExercises-1)
+    if (xciseCount > numXcises-1)
     {
         throw logic_error("Can't add an exercise to this workout, max number of exercises for this workout reached");
+        
+        //add a part that asks whether you want to expand number of xrcises in workout
     }
     
     cout << "Going to insert the exercise " << addOn.name << " to the exercise list" << endl;
     
     //exerciseList.insert(addOn);
     
-    exerciseListTwo[xciseCount] = addOn;
+    exerciseList[xciseCount] = addOn;
     
     xciseCount++;
+}
+
+void workout_template::getDate()
+{
+    cout << month << "/" << day << "/" << year << endl;
+}
+
+void workout_template::setDate(int m, int d, int y)
+{
+    month = m;
+    day = d;
+    year = y;
 }
 
 #endif /* workoutTemplate_h */

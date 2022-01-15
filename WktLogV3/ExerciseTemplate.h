@@ -20,35 +20,39 @@ using namespace std;
 
 class exercise_template
 {
-    public:
-        string name;
+public:
+    string name;
+    string muscleArea;
         
-        int oneRepMax;
+    int oneRepMax;
         
-        int sets;
-        int reps;
-        int weight;
+    int sets;
+    int reps;
+    int weight;
         
-        float restTime; //in minutes
+    float restTime; //in minutes
         
-        bool hasWeight = false; //options should be yes which prompts amount or no with option for bodyweight
+    bool hasWeight = false; //options should be yes which prompts amount or no with option for bodyweight
     
-        bool hasDuration = false; //option for runs or interval training
+    bool hasDuration = false; //option for runs or interval training
     
-        int duration; //this is like if the exercise has a time component, like split swuat jumps
+    int duration; //this is like if the exercise has a time component, like split swuat jumps
     
-        void setName(string newName);
-        void assignSetNumber(int num);
-        void assignReps(int num); //might want to add feature to do varying reps if like you don't complete the reps or want to do like a pyramid
+    void setName(string newName);
+    void assignSetNumber(int num);
+    void assignReps(int num); //might want to add feature to do varying reps if like you don't complete the reps or want to do like a pyramid
         
-        void setWeight(int newWeight);
+    void setWeight(int newWeight);
     
-        void setRestTime(float time);
+    void setRestTime(float time);
     
-    private:
-        exercise_template *next;
-        exercise_template *previous;
+    exercise_template();
+    ~exercise_template();
     
+private:
+    //This was from before when I was gonna make the list of exercises a linked list
+    exercise_template *next;
+    exercise_template *previous;
     
     
 };
@@ -129,4 +133,30 @@ void exercise_template::setRestTime(float time)
     
 }
 
+//Constructor
+exercise_template::exercise_template()
+{
+    //Making the name
+    string inName;
+    cout << "Enter the name of this exercise: ";
+    cin >> inName;
+    cout << endl;
+    setName(inName);
+    
+    //Assigning # of sets
+    int inSets;
+    cout << "Enter how many sets this exercise will have: ";
+    cin >> inSets;
+    cout << endl;
+    assignSetNumber(inSets);
+    
+    
+    
+}
+
+//Destructor
+exercise_template::~exercise_template()
+{
+    
+}
 #endif /* ExerciseTemplate_h */

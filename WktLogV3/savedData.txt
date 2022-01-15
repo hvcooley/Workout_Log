@@ -1,4 +1,7 @@
 Data:
 
-?Chest 3 *PushUps 3 30 2 0 *DumbellPress 5 8 2 50 *InclineBench 5 12 1.5 90
+1/10/2021 Chest 3 *PushUps 3 30 2 0 *DumbellPress 5 8 2 50 *InclineBench 5 12 1.5 90
+1/11/2021 Chest 3 *PushUps 3 30 2 0 *DumbellPress 5 8 2 50 *InclineBench 5 12 1.5 90
+1/12/2021 Chest 3 *PushUps 3 30 2 0 *DumbellPress 5 8 2 50 *InclineBench 5 12 1.5 90
+1/13/2021 Chest 3 *PushUps 3 30 2 0 *DumbellPress 5 8 2 50 *InclineBench 5 12 1.5 90
 Q

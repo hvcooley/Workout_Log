@@ -9,146 +9,14 @@
 #include <iostream>
 #include "main.h"
 
-//useless comment to test the commit feature
-
 using namespace std;
-
 
 void displayMenu()
 {
     //at very begining here I will load in all the workouts with their exercises as well as compose a master list of all the exercises while it is loading in each exercise to the workout (so it will load the exercise into the workout then also add it to the master list of exercises and see if it is alread present)
     
-    ifstream loadData;
+    loadData("/Users/harrisoncooley/Desktop/WktLogV3/savedData.txt");
     
-    loadData.open("/Users/harrisoncooley/Desktop/WktLogV3/savedData.txt");
-    
-    if (!loadData)
-    {
-        throw invalid_argument("file did not open");
-    }//END if
-    
-    //create the MTFL of workouts
-    //MTFL<workout_template> listOfWorkouts;
-    
-    workout_template listOfWorkouts [50];
-    
-    //this will be the workout template I repeatedly put data into then insert into the list
-    workout_template reUsableWorkout;
-    
-    char garbage; //to get rid of underscores and other chars
-    
-    //reusable variables for the workout to populate
-    string wktName;
-    int numXrcises;
-    
-    //this will be the exercise template I use to populate each workout
-    exercise_template reUsableExercise;
-    
-    //reusable variables for each exercise inserted
-    string XrciseName;
-    int XrciseSets;
-    int XrciseReps;
-    float XrciseRest; //should add a conversion later for minutes vs seconds
-    int XrciseWeight;
-    
-    bool goodToInsert; //lets the program know to insert the workout template as a new one
-    
-    int increment = 0; //the increment for how many workouts are added
-    
-    cout << "Will now read file" << endl;
-    
-    loadData.ignore(5, '\n');
-    loadData.ignore(1, '\n');
-    
-    //Here start loading in each line at a time into a workout
-    
-    while (loadData)
-    {
-        goodToInsert = false;
-        
-        loadData >> garbage; //find the ? to begin analysis of data
-        
-        cout << "Garbage is: " << garbage << endl;
-        
-        if (garbage == '?')
-        {
-            goodToInsert = true;
-            
-            loadData >> wktName;
-            
-            cout << "The workout name is: " << wktName << endl;
-            
-            //loadData >> garbage; //get rid of underscore
-            
-            loadData >> numXrcises;
-            
-            cout << "The number of exercise is: " << numXrcises << endl;
-            
-            //loadData >> garbage; //get rid of underscore
-            
-            //set name of the workout to be inserted into list of all workouts
-            reUsableWorkout.setName(wktName);
-            
-            //set how may exercises are in this workout
-            reUsableWorkout.setXciseNumber(numXrcises);
-            
-            for (int h = 0; h < numXrcises; h++)
-            {
-                
-                cout << "Inside for loop loading each workout" << endl;
-                
-                loadData >> garbage; //get rid of the *
-                
-                loadData >> XrciseName; //get name of exercise
-                reUsableExercise.setName(XrciseName); //set name of exercise into reusable
-                
-                loadData >> XrciseSets; //get number of sets for this exercise
-                reUsableExercise.assignSetNumber(XrciseSets); //set number of sets into reusable
-                
-                loadData >> XrciseReps; //get reps per set for exercise
-                reUsableExercise.assignReps(XrciseReps); //set reps for the reusable
-                
-                loadData >> XrciseRest;
-                reUsableExercise.setRestTime(XrciseRest);
-                
-                loadData >> XrciseWeight;
-                reUsableExercise.setWeight(XrciseWeight);
-                
-                reUsableWorkout.addXrcise(reUsableExercise); //add the reusable exercise to the wkt, which will then repeat for every exercise
-                
-            }//end for loop for number of exercises
-            
-        }//end if statement for garbage == ?
-        
-        else
-        {
-            cout << "Inside the else statement meaning a char other than a ? was read" << endl;
-            
-            loadData.ignore(200, '\n');
-            
-            cout << "Just performed the ignore function" << endl;
-        }
-        
-        if (goodToInsert == true)
-        {
-            
-            cout << "About to insert the re-usable workout named: " << reUsableWorkout.name << endl;
-            
-            //listOfWorkouts.insert(reUsableWorkout);
-            
-            listOfWorkouts[increment] = reUsableWorkout;
-            
-            increment++;
-            
-        }//end if goodToInsert == true
-        
-    }//end while loadData
-    
-    cout << "Just completed insertion..." << endl << endl;
-    
-    cout << endl << endl << endl;
-    
-    //end of loading data from the file
     
     cout << "Mr. Cooley's Database:" << endl;
     cout << "A) Workouts" << endl;
@@ -179,7 +47,7 @@ void displayMenu()
             for (int f = 0; f < increment; f++)
             {
                 
-                cout << f+1 << ". " << listOfWorkouts[f].name << " (Contains " << listOfWorkouts[f].numberOfExercises << " exercises in it)" << endl;
+                cout << f+1 << ". " << listOfWorkouts[f].name << " (Contains " << listOfWorkouts[f].numXcises << " exercises in it)" << endl;
                 
             }
             
@@ -213,16 +81,16 @@ void displayMenu()
                     
                     cout << endl;
                     
-                    cout << wktDec << ". " << listOfWorkouts[wktDec-1].name << " (Contains " << listOfWorkouts[wktDec-1].numberOfExercises << " exercises in it)" << endl;
+                    cout << wktDec << ". " << listOfWorkouts[wktDec-1].name << " (Contains " << listOfWorkouts[wktDec-1].numXcises << " exercises in it)" << endl;
                     
                     //need an if statement here to see if a wkt was selected properly
                     // and whether to continue
                     
                     cout << "Exercises in " << listOfWorkouts[wktDec-1].name << ": " << endl;
                 
-                    for (int i = 0; i < listOfWorkouts[wktDec-1].numberOfExercises; i++)
+                    for (int i = 0; i < listOfWorkouts[wktDec-1].numXcises; i++)
                     {
-                        cout << i+1 << ". " << listOfWorkouts[wktDec-1].exerciseListTwo[i].name << endl;
+                        cout << i+1 << ". " << listOfWorkouts[wktDec-1].exerciseList[i].name << endl;
                     }//end for loop 0 to numberOfExercises
                     
                     viewWktDone = true;
@@ -303,7 +171,7 @@ void newWorkout()
     
     cout << "Will now start logging your exercises..." << endl;
     
-    for (int i = 1; i < newWorkout.numberOfExercises +1; i++)
+    for (int i = 1; i < newWorkout.numXcises +1; i++)
     {
         exercise_template *inputXrcise = new exercise_template;
         
@@ -402,26 +270,26 @@ void newWorkout()
     
     string data;
     
-    file << endl << "?" << newWorkout.name << " " << newWorkout.numberOfExercises << " ";
+    file << endl << "?" << newWorkout.name << " " << newWorkout.numXcises << " ";
     
     //cout << "The number of exercises is: " << newWorkout.numberOfExercises << endl;
     
-    for (int j = 0; j < newWorkout.numberOfExercises; j++) //(int j = newWorkout.numberOfExercises -1; j > -1; j--)
+    for (int j = 0; j < newWorkout.numXcises; j++) //(int j = newWorkout.numberOfExercises -1; j > -1; j--)
     {
         //cout << newWorkout.exerciseList[j].name << endl;
-        file << "*" << newWorkout.exerciseListTwo[j].name << " ";
+        file << "*" << newWorkout.exerciseList[j].name << " ";
         
         //cout << newWorkout.exerciseList[j].sets << endl;
-        file << newWorkout.exerciseListTwo[j].sets << " ";
+        file << newWorkout.exerciseList[j].sets << " ";
         
         //cout << newWorkout.exerciseList[j].reps << endl;
-        file << newWorkout.exerciseListTwo[j].reps << " ";
+        file << newWorkout.exerciseList[j].reps << " ";
         
         //cout << newWorkout.exerciseList[j].restTime << endl;
-        file << newWorkout.exerciseListTwo[j].restTime << " ";
+        file << newWorkout.exerciseList[j].restTime << " ";
         
         //cout << newWorkout.exerciseList[j].restTime << endl;
-        file << newWorkout.exerciseListTwo[j].weight << " ";
+        file << newWorkout.exerciseList[j].weight << " ";
         //will have 0s for bodyweight exercises, computer will realize this later and fill in for bodyweight when reading the data again to load at different time
         
     }
