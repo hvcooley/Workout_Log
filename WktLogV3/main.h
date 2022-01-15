@@ -14,15 +14,16 @@
 #include <string>
 #include <stdexcept>
 #include <cstdlib>
+#include <vector>
 
 #include <chrono>
 
 #include "ExerciseTemplate.h"
 #include "workoutTemplate.h"
 #include "RunTemplate.h"
-#include "MTFList.h"
 #include "WorkoutPlan.h"
 #include "loadWktData.h"
+#include "menuFunctions.h"
 
 
 #include <stdio.h>

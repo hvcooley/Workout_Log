@@ -36,6 +36,8 @@ public:
     void getDate();
     
     void setDate(int m, int d, int y);
+    
+    void initXciseList(int sz);
         
     string name;
     int numXcises;
@@ -55,14 +57,20 @@ private:
 //Constructor
 workout_template::workout_template()
 {
-    cout << "Enter the name of this workout here: ";
-    cin >> name;
-    cout << endl;
-    cout << "Enter the number of excersises in this workout here: ";
-    cin >> numXcises;
     
-    exerciseList = new exercise_template[numXcises];
 }//END constructor
+
+//Constructor with params
+//workout_template::workout_template()
+//{
+//    cout << "Enter the name of this workout here: ";
+//    cin >> name;
+//    cout << endl;
+//    cout << "Enter the number of excersises in this workout here: ";
+//    cin >> numXcises;
+//
+//    exerciseList = new exercise_template[numXcises];
+//}//END constructor
 
 //Destructor
 workout_template::~workout_template()
@@ -128,9 +136,18 @@ void workout_template::getDate()
 
 void workout_template::setDate(int m, int d, int y)
 {
+    cout << "Setting date to " << m << "/" << d << "/" << y << endl;
+    
     month = m;
     day = d;
     year = y;
+}
+
+void workout_template::initXciseList(int sz)
+{
+    int size = sz;
+    setXciseNumber(size);
+    exerciseList = new exercise_template[size];
 }
 
 #endif /* workoutTemplate_h */

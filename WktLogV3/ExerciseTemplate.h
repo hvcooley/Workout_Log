@@ -136,23 +136,27 @@ void exercise_template::setRestTime(float time)
 //Constructor
 exercise_template::exercise_template()
 {
-    //Making the name
-    string inName;
-    cout << "Enter the name of this exercise: ";
-    cin >> inName;
-    cout << endl;
-    setName(inName);
-    
-    //Assigning # of sets
-    int inSets;
-    cout << "Enter how many sets this exercise will have: ";
-    cin >> inSets;
-    cout << endl;
-    assignSetNumber(inSets);
-    
-    
     
 }
+
+//Constructor with params
+//exercise_template::exercise_template()
+//{
+//    //Making the name
+//    string inName;
+//    cout << "Enter the name of this exercise: ";
+//    cin >> inName;
+//    cout << endl;
+//    setName(inName);
+//
+//    //Assigning # of sets
+//    int inSets;
+//    cout << "Enter how many sets this exercise will have: ";
+//    cin >> inSets;
+//    cout << endl;
+//    assignSetNumber(inSets);
+//
+//}
 
 //Destructor
 exercise_template::~exercise_template()

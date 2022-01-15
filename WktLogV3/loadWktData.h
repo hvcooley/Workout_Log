@@ -8,7 +8,11 @@
 #ifndef loadWktData_h
 #define loadWktData_h
 
-void loadData(string fP)
+#include "ExerciseTemplate.h"
+#include "workoutTemplate.h"
+#include "WorkoutPlan.h"
+
+void loadData(string fP, vector<workout_template> &data)
 {
     ifstream loadData;
     
@@ -25,7 +29,8 @@ void loadData(string fP)
     //create the MTFL of workouts
     //MTFL<workout_template> listOfWorkouts;
     
-    workout_template listOfWorkouts [50];
+    //switching the data storage to a vector passed as reference into the function
+    //workout_template listOfWorkouts [50];
     
     //this will be the workout template I repeatedly put data into then insert into the list
     workout_template reUsableWorkout;
@@ -94,8 +99,8 @@ void loadData(string fP)
         
         reUsableWorkout.setDate(m, d, y);
         
-        //set how may exercises are in this workout
-        reUsableWorkout.setXciseNumber(numXrcises);
+        //set how may exercises are in this workout and initialize the array
+        reUsableWorkout.initXciseList(numXrcises);
         
         for (int h = 0; h < numXrcises; h++)
         {
@@ -131,9 +136,11 @@ void loadData(string fP)
             
             //listOfWorkouts.insert(reUsableWorkout);
             
-            listOfWorkouts[increment] = reUsableWorkout;
+            //listOfWorkouts[increment] = reUsableWorkout;
             
-            increment++;
+            data.push_back(reUsableWorkout);
+            
+            //increment++;
             
         }//end if goodToInsert == true
         
@@ -144,6 +151,7 @@ void loadData(string fP)
     cout << endl << endl << endl;
     
     //end of loading data from the file
+    
 }
 
 #endif /* loadWktData_h */
