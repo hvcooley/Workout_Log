@@ -35,9 +35,7 @@ public:
     
     void getDate();
     
-    void setDate(int m, int d, int y);
-    
-    void initXciseList(int sz);
+    void setDate(int m, int d, int y, string dStr);
     
     void resetWkt();
         
@@ -47,12 +45,15 @@ public:
     
     int timesCompleted; //this will be incremented every time a workout is logged, will help with reading the info to and from the file for saving
     
+    string dateStr;
+    
     exercise_template *exerciseList ; //this stores each exercise for this specific workout
     
 private:
     
     int month, day, year;
-        
+    
+    void initXciseList(int sz);
 
 };
 
@@ -107,6 +108,9 @@ void workout_template::setXciseNumber(int num)
     
     cout << "The number of exercises in this workout is ";
     cout << numXcises << endl;
+    
+    //call the initialization function for the dynamic array
+    initXciseList(num);
 }
 
 
@@ -136,19 +140,42 @@ void workout_template::getDate()
     cout << month << "/" << day << "/" << year << endl;
 }
 
-void workout_template::setDate(int m, int d, int y)
+void workout_template::setDate(int m, int d, int y, string dStr)
 {
     cout << "Setting date to " << m << "/" << d << "/" << y << endl;
     
     month = m;
     day = d;
     year = y;
+    
+    string testBlank = " ";
+    //if no date string is given, create it
+    if (testBlank.compare(dStr) == 0)
+    {
+        //transform ints to strings
+        
+        string mStr = to_string(m);
+        string dStr = to_string(d);
+        string yStr = to_string(y);
+        
+        dateStr = mStr;
+        dateStr = dateStr + "/";
+        dateStr = dateStr + dStr;
+        dateStr = dateStr + "/";
+        dateStr = dateStr + yStr;
+        cout << "the dateStr is " << dateStr << endl;
+    }
+    else
+    {
+        dateStr = dStr;
+    }
+    
+    
 }
 
 void workout_template::initXciseList(int sz)
 {
     int size = sz;
-    setXciseNumber(size);
     exerciseList = new exercise_template[size];
 }
 

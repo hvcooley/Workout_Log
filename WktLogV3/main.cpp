@@ -9,7 +9,21 @@
 #include <iostream>
 #include "main.h"
 
+const int menuOption = 1;
+const int logWorkoutOption = 2;
+const int newWorkoutOption = 3;
+const int quitOption = 4;
+
 using namespace std;
+
+//base class to have a vector that never has to be reloaded with data
+class wktLog
+{
+public:
+    vector<workout_template> data;
+    unordered_map<string, exercise_template> allXcises;
+private:
+};
 
 int main(int argc, const char * argv[])
 {
@@ -20,7 +34,7 @@ int main(int argc, const char * argv[])
         //wktPlan cooleyPlan;
             
         string password;
-        string password_check = "Titties";
+        string password_check = "Fitness";
 
         cout  << "Welcome to Mr. Cooley's Workout Log. Please insert password to access control: ";
 
@@ -30,55 +44,73 @@ int main(int argc, const char * argv[])
 
         if (password == password_check) //program started
         {
+            
+            wktLog myLog;
+            
+            string dataFile = "/Users/harrisoncooley/Desktop/WktLogV3/WktLogV3/savedData.txt";
+            
+            loadData(dataFile, myLog.data);
+            
             //Display menu here.
-
             int option;
-            int menuOption = 1;
-            int logWorkoutOption = 2;
-            int newWorkoutOption = 3;
-            int quitOption = 4;
-
-            cout << "What would you like to do?" << endl;
-            cout << "1. Display Menu" << endl;
-            cout << "2. Log a workout" << endl;
-            cout << "3. Create a new workout" << endl;
-            cout << "4. Quit" << endl;
-            cout << endl;
-
-            cout << "Enter a number: ";
-
-            cin >> option;
-
-            cout << endl;
-
-            if (option == menuOption)
+            
+            bool done = false;
+            
+            while (done == false)
             {
-                displayMenu();
-            }
-
-            else if (option == logWorkoutOption)
-            {
-                logWorkout();
-            }
-
-            else if (option == newWorkoutOption)
-            {
-                newWorkout();
-            }
-
-            else if (option == quitOption)
-            {
-                cout << "Quitting..." << endl;
+                cout << "What would you like to do?" << endl;
+                cout << "1. Display Menu" << endl;
+                cout << "2. Log a workout" << endl;
+                cout << "3. Create a new workout" << endl;
+                cout << "4. Quit" << endl;
                 cout << endl;
-            }
 
-        }//end if statement password check
+                cout << "Enter a number: ";
+
+                cin >> option;
+
+                cout << endl;
+
+                if (option == menuOption)
+                {
+                    displayMenu(myLog.data);
+                }
+
+                else if (option == logWorkoutOption)
+                {
+                    cout << "Before logging workout" << endl;
+                    printWkts(myLog.data);
+                    workout_template addedWkt = logWorkout(dataFile);
+                    myLog.data.push_back(addedWkt);
+                    cout << "After logging workout" << endl;
+                    printWkts(myLog.data);
+                }
+
+                else if (option == newWorkoutOption)
+                {
+                    cout << "Before logging workout" << endl;
+                    printWkts(myLog.data);
+                    workout_template addedWkt = newWorkout(dataFile);
+                    myLog.data.push_back(addedWkt);
+                    cout << "After logging workout" << endl;
+                    printWkts(myLog.data);
+                }
+
+                else if (option == quitOption)
+                {
+                    cout << "Quitting..." << endl;
+                    cout << endl;
+                    done = true;
+                }
+            }//end while done == false
+
+        }//end if password is good
         else
         {
             cout << "Incorrect password program quitting." << endl;
             //return 0; //maybe try break statement
 
-        }//end else ending program wrong password
+        }//end else wrong password
         
     }//end try
 

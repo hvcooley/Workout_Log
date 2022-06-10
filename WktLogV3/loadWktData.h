@@ -26,11 +26,7 @@ void loadData(string fP, vector<workout_template> &data)
         throw invalid_argument("file did not open");
     }//END if
     
-    //create the MTFL of workouts
-    //MTFL<workout_template> listOfWorkouts;
-    
-    //switching the data storage to a vector passed as reference into the function
-    //workout_template listOfWorkouts [50];
+    //the data storage is a vector passed as reference into the function
     
     char garbage; //to get rid of underscores and other chars
     
@@ -67,22 +63,14 @@ void loadData(string fP, vector<workout_template> &data)
     
     //Here start loading in each line at a time into a workout
     
-    while (loadData)
+    while (loadData >> m >> ch >> d >> ch >> y >> wktName >> numXrcises)
     {
         goodToInsert = false;
         
         //this will be the workout template I repeatedly put data into then insert into the list
         workout_template reUsableWorkout;
         
-        loadData >> m;
-        loadData >> ch;
-        loadData >> d;
-        loadData >> ch;
-        loadData >> y;
-        
         goodToInsert = true;
-        
-        loadData >> wktName;
         
         cout << endl << endl;
         
@@ -90,7 +78,7 @@ void loadData(string fP, vector<workout_template> &data)
         
         //loadData >> garbage; //get rid of underscore
         
-        loadData >> numXrcises;
+        //loadData >> numXrcises;
         
         cout << "The number of exercises is: " << numXrcises << endl;
         
@@ -99,10 +87,10 @@ void loadData(string fP, vector<workout_template> &data)
         //set name of the workout to be inserted into list of all workouts
         reUsableWorkout.setName(wktName);
         
-        reUsableWorkout.setDate(m, d, y);
+        reUsableWorkout.setDate(m, d, y, " ");
         
         //set how may exercises are in this workout and initialize the array
-        reUsableWorkout.initXciseList(numXrcises);
+        reUsableWorkout.setXciseNumber(numXrcises);
         
         for (int h = 0; h < numXrcises; h++)
         {
@@ -153,6 +141,8 @@ void loadData(string fP, vector<workout_template> &data)
     cout << endl << endl << endl;
     
     //end of loading data from the file
+    
+    loadData.close();
     
 }
 
